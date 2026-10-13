@@ -1,0 +1,50 @@
+# macOS
+.DS_Store
+._*
+
+# MATLAB temporary / generated files
+*.asv
+*.autosave
+*.m~
+*.slxc
+slprj/
+codegen/
+*.mex*
+*.p
+
+# MATLAB App Designer backups / temporary
+*.mlappinstall
+
+# LaTeX build artefacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+
+# Generated local caches
+_RawData_cache/
+_RawData_cache_hotspot/
+Chapter4_Figures/
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Do not accidentally commit private/local notes
+notes_private/
+scratch/
