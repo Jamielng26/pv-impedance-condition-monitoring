@@ -88,11 +88,11 @@ See [docs/reproducibility.md](docs/reproducibility.md) for the intended analysis
 
 ## Data
 
-See [data/README.md](data/README.md) for the raw-data organisation and notes on file naming.
+See [data/README.md](data/README.md) for the raw-data organisation and notes on file naming. A cleaned full raw-data package has been prepared from the retained laboratory archive: 17 sessions, 347 retained files, approximately 9.5 MB compressed. Its checksum and session inventory are documented in [data/raw/README.md](data/raw/README.md).
 
 ## MATLAB
 
-See [matlab/README.md](matlab/README.md) for the planned code layout and the distinction between final retained scripts and superseded development/debugging versions.
+The full development archive has been reviewed and a final-report code set has been identified. See [matlab/MANIFEST.md](matlab/MANIFEST.md) for the retained scripts and [docs/matlab_curation.md](docs/matlab_curation.md) for the curation rationale, excluded development versions, portability notes, and the operating-point version warning.
 
 ## Citation
 
