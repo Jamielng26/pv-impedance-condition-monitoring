@@ -15,7 +15,7 @@ Year: **2026**
 
 The project investigates whether module-level impedance measurements can distinguish normal operating-state variation from controlled photovoltaic mismatch and fault conditions.
 
-The experimental work used a **Goldstone GSM80W monocrystalline-silicon PV module** and a **Metrohm Autolab PGSTAT302N/FRA** laboratory setup. The final FRA workflow used potentiostatic control and a retained measurement band of **1 Hz to 100 kHz**, with Kramers-Kronig checks and equivalent-circuit fitting used as measurement and interpretation tools.
+The experimental work used a **Goldstone GSM80W monocrystalline-silicon PV module** and a **Metrohm Autolab PGSTAT302N/FRA** laboratory setup. The final FRA workflow used potentiostatic control over **1 Hz to 100 kHz**, with Kramers–Kronig checks, repeatability assessment and equivalent-circuit fitting used to support measurement validation and interpretation.
 
 The work progressed through:
 
@@ -28,8 +28,6 @@ The work progressed through:
 7. Exploratory local-hotspot testing.
 
 ## Main findings
-
-Two results are central to the report.
 
 ### Healthy-state conditioning
 
@@ -55,11 +53,11 @@ During progressive PS75 multi-cell mismatch, the conventional terminal DC respon
 
 A two-relaxation impedance description also became strongly favoured from the four-cell state onward.
 
-The report therefore concludes that **EIS/FRA can retain sensitivity to increasing internal mismatch after conventional terminal DC quantities have become comparatively insensitive**, provided the measurement is interpreted relative to a validated electrical and environmental baseline.
+The report therefore concludes that **EIS/FRA can retain sensitivity to increasing internal mismatch after conventional terminal DC quantities have become comparatively insensitive**, provided that measurements are interpreted relative to a validated and electrically conditioned healthy baseline.
 
 The experiments did **not** isolate a conducting bypass-diode impedance, and the exploratory hotspot tests did **not** establish a reproducible hotspot-specific impedance signature.
 
-## Repository structure
+## Repository contents
 
 ```text
 .
@@ -67,37 +65,67 @@ The experiments did **not** isolate a conducting bypass-diode impedance, and the
 ├── CITATION.cff
 ├── .gitignore
 ├── data/
-│   └── README.md
+│   ├── raw/
+│   │   └── Raw_Data_2026_Clean.zip
+│   └── metadata/
+│       ├── PV_Lab_Master_Log.xlsx
+│       ├── PV_Environmental_Rig_Characterisation_Tracker.xlsx
+│       └── PV_Validated_FRA_Crosswalk_20260917.xlsx
 ├── matlab/
-│   └── README.md
+│   ├── analysis/
+│   ├── apps/
+│   ├── figure_generation/
+│   ├── models/
+│   └── verify_repository_payload.m
+├── figures/
+│   └── chapter4/
 ├── docs/
 │   ├── data_dictionary.md
 │   ├── experimental_protocol.md
-│   └── reproducibility.md
-├── figures/
-│   └── README.md
+│   ├── reproducibility.md
+│   └── matlab_curation.md
 └── report/
     └── README.md
 ```
 
-The repository will be populated with the retained raw data, final analysis scripts, report figure-generation scripts, and the submitted report.
-
 ## Reproducibility
 
-See [docs/reproducibility.md](docs/reproducibility.md) for the intended analysis workflow and the mapping between datasets, MATLAB scripts, and report figures.
+See [docs/reproducibility.md](docs/reproducibility.md) for the analysis workflow, data locations and mapping between report results and MATLAB scripts.
+
+A quick local preflight is provided at:
+
+```matlab
+verify_repository_payload
+```
 
 ## Data
 
-See [data/README.md](data/README.md) for the raw-data organisation and notes on file naming. A cleaned full raw-data package has been prepared from the retained laboratory archive: 17 sessions, 347 retained files, approximately 9.5 MB compressed. Its checksum and session inventory are documented in [data/raw/README.md](data/raw/README.md).
+The complete retained laboratory dataset is available as:
+
+[**data/raw/Raw_Data_2026_Clean.zip**](data/raw/Raw_Data_2026_Clean.zip)
+
+The package contains **17 experimental sessions and 347 retained files**. Its checksum and session inventory are documented in [data/raw/README.md](data/raw/README.md).
+
+Supporting metadata are available under [data/metadata/](data/metadata/), including the current master log, environmental-rig tracker and validated FRA crosswalk.
 
 ## MATLAB
 
-The full development archive has been reviewed and a final-report code set has been identified. See [matlab/MANIFEST.md](matlab/MANIFEST.md) for the retained scripts and [docs/matlab_curation.md](docs/matlab_curation.md) for the curation rationale, excluded development versions, portability notes, and the operating-point version warning.
+The public MATLAB set has been curated from the full project-development archive. It includes final analysis scripts, report figure-generation scripts, the retained lab-analysis app and the supporting single-diode Simulink model.
+
+See [matlab/MANIFEST.md](matlab/MANIFEST.md) for the retained code set and [docs/matlab_curation.md](docs/matlab_curation.md) for version-selection and provenance notes.
+
+## Figures
+
+Selected retained exports for the main controlled-mismatch and hotspot results are available under [figures/chapter4/](figures/chapter4/), together with compact CSV metric summaries.
+
+## Report
+
+The final submitted report PDF will be added under [report/](report/) after the final compression, proofreading and formatting pass.
 
 ## Citation
 
 Citation metadata are provided in [CITATION.cff](CITATION.cff).
 
-## License
+## Licence and reuse
 
-No open-source software or data licence has been assigned yet. Unless a licence is added later, the repository contents remain copyright of the author and should not be redistributed or reused beyond normal academic review without permission.
+No open-source software or data licence has been assigned. Unless a licence is added later, the repository contents remain copyright of the author and are provided primarily for academic review and reproducibility.
