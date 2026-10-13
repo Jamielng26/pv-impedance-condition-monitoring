@@ -1,39 +1,61 @@
 # MATLAB
 
-This directory is reserved for the **final retained MATLAB code** used to analyse the data and generate the figures in the submitted report.
+This directory contains the **curated final-report MATLAB code set** retained from the full project-development archive.
 
-The repository should contain reproducible final versions, not the complete history of temporary/debugging scripts.
+The aim is to preserve the shortest clear path from the raw data to the submitted analyses and figures, rather than publishing every temporary, debugging or superseded development file.
 
-## Planned layout
+## Layout
 
 ```text
 matlab/
 ├── analysis/
-├── figure_generation/
 ├── apps/
+├── figure_generation/
 ├── models/
-└── utilities/
+├── MANIFEST.md
+└── verify_repository_payload.m
 ```
 
-## Expected retained code
+## Analysis
 
-The final curated set is expected to include scripts or apps for:
+`analysis/` contains the retained project analysis scripts, including:
 
-- DC curve import and operating-point extraction;
-- FRA import and spectral processing;
-- Kramers-Kronig / validity summaries where implemented in MATLAB;
-- equivalent-circuit parameter extraction and comparison;
-- local differential resistance \(R_{diff}\) analysis;
-- healthy \(R_p\) versus \(R_{diff}\) synthesis;
-- controlled shading / mismatch figure generation;
-- exploratory hotspot figure generation;
-- any final single-diode-model or supporting model used in the report;
-- reusable plotting and export helpers that are genuinely required by the retained scripts.
+- validated FRA / DC feature extraction;
+- environmental DC and single-diode analysis.
+
+## App
+
+`apps/PVLabAnalyzer_v0_1_9.m` is the final retained laboratory-analysis dashboard version.
+
+## Figure generation
+
+`figure_generation/` contains the scripts used for the principal report figures, including:
+
+- Chapter 3 representative DC and FRA plots;
+- operating-point reconciliation;
+- FRA protocol qualification;
+- environmental-rig characterisation;
+- healthy environmental FRA comparisons;
+- the healthy \(R_p\)-vs-\(R_{diff}\) relation;
+- controlled shading and progressive mismatch Figures 4.13–4.17;
+- exploratory hotspot Figure 4.18.
+
+## Models
+
+`models/` contains the retained supporting single-diode Simulink model and associated build/configuration files.
+
+## Reproducibility preflight
+
+From MATLAB, with the repository available locally, run:
+
+```matlab
+verify_repository_payload
+```
+
+This checks that the key raw-data archive, metadata workbooks and principal final-report scripts are present.
 
 ## Version policy
 
-Only the final reproducible version of each analysis should be committed. Superseded files with names such as `FIXED`, `v2`, `old`, `temp`, or one-off debugging scripts should not be included unless they are required to reproduce a published result.
+Superseded development chains, one-off debugging scripts, generated caches and duplicate embedded raw-data archives are intentionally excluded from the public repository.
 
-## MATLAB version
-
-The report-generation work was performed using MATLAB R2025b on macOS during the final project phase. Scripts should be written to remain portable where practical.
+See [MANIFEST.md](MANIFEST.md) for the final retained file list and [../docs/matlab_curation.md](../docs/matlab_curation.md) for the curation rationale.
