@@ -1,50 +1,66 @@
 # Reproducibility guide
 
-The final repository is intended to let a reviewer trace each reported result back to the retained experimental data and MATLAB analysis.
+The repository is organised so that a reviewer can trace the main report results back to the retained experimental data and MATLAB analysis.
 
 ## Recommended environment
 
 - MATLAB R2025b or later.
-- No internet connection should be required for the final analysis scripts.
-- Keep the raw-data archive in the location expected by each top-level reproduction script, or update the script's `DATA_SOURCE` / root-path setting.
+- Simulink is required only for the supporting single-diode model.
+- No internet connection is required for the retained analysis scripts after the repository has been cloned.
 
-## Reproduction workflow
+## Preflight
 
-1. Obtain the retained raw dataset from `data/`.
-2. Open MATLAB in the repository root or the relevant `matlab/` subdirectory.
-3. Run the final data-audit / import script first where one is supplied.
-4. Run the relevant analysis or figure-generation script.
-5. Compare generated numerical summaries and figures with the values reported in the final project report.
+From MATLAB, add/open the repository and run:
+
+```matlab
+verify_repository_payload
+```
+
+The preflight checks the raw-data archive, current master log, environmental tracker, validated crosswalk and key final-report scripts.
+
+## Data locations
+
+- Raw laboratory archive: `data/raw/Raw_Data_2026_Clean.zip`
+- Current run log: `data/metadata/PV_Lab_Master_Log.xlsx`
+- Environmental rig tracker: `data/metadata/PV_Environmental_Rig_Characterisation_Tracker.xlsx`
+- Validated FRA crosswalk: `data/metadata/PV_Validated_FRA_Crosswalk_20260917.xlsx`
+
+The principal Chapter 4 scripts now resolve these paths relative to their location in the repository. Where raw files are needed, the ZIP is extracted automatically into ignored local cache directories.
+
+## Figure-generation paths
+
+Newly reproduced Chapter 4 figures are written to:
+
+`figures/generated/`
+
+The `figures/chapter4/` directory contains selected retained exports generated during the project.
 
 ## Key report results to reproduce
 
-The final curated repository should provide direct reproduction paths for at least:
-
-| Report result | Target reproduction |
+| Report result | Reproduction script |
 |---|---|
-| Healthy operating-point reconciliation | Healthy environmental / OPX analysis script |
-| Healthy \(R_p\)-\(R_{diff}\) relationship | Final \(R_p\) vs \(R_{diff}\) analysis |
-| PS50 spatial sensitivity | Chapter 4 shading figure pipeline |
-| Single-cell severity behaviour | Chapter 4 shading figure pipeline |
-| Two-cell mismatch experiment | Chapter 4 shading figure pipeline |
-| Progressive mismatch and \(\Delta BIC\) transition | Chapter 4 shading figure pipeline |
-| Suspected substring / bypass interpretation test | Chapter 4 shading figure pipeline |
-| Exploratory hotspot comparison | Hotspot figure-generation script |
+| Operating-point definition and reconciliation figures | `matlab/figure_generation/generate_ch4_figures_v2.m` |
+| FRA protocol qualification | `matlab/figure_generation/generate_ch4_2_story_figures_v3.m` |
+| Environmental-rig characterisation | `matlab/figure_generation/generate_ch4_3_figures.m` |
+| Healthy environmental FRA comparisons | `matlab/figure_generation/generate_ch4_5_core_figures.m` |
+| Healthy `Rp`–`Rdiff` relation | `matlab/figure_generation/Figure_4_12_Rp_vs_Rdiff_FIXED_v2.m` |
+| PS50 spatial sensitivity through progressive mismatch and boundary test | `matlab/figure_generation/generate_chapter4_shading_figures.m` |
+| Exploratory hotspot comparison | `matlab/figure_generation/generate_Fig4_18_hotspot_exploratory.m` |
 
-## Expected headline checks
+## Headline numerical checks
 
-A correct reproduction of the final data should recover, within normal rounding:
+A correct reproduction should recover, within normal rounding:
 
-- healthy \(R_p\)-\(R_{diff}\) fit: \(R^2 \approx 0.994\);
+- healthy `Rp`–`Rdiff` in-sample `R^2 ≈ 0.994`;
 - four-to-nine-cell PS75 progression:
-  - \(\Delta P_{mp} \approx -6.1\%\),
-  - \(\Delta I_{sc} \approx -4.6\%\),
-  - \(\Delta R_p \approx +63.4\%\),
-  - \(\Delta(-Z''_{max}) \approx +62.2\%\);
-- sustained strong preference for the two-relaxation model from the four-cell state onward;
-- no uniquely boundary-dependent impedance response in the matched Day-18 pair test;
-- hotspot-associated spectral changes that are not consistently larger than healthy run-to-run drift.
+  - `ΔPmp ≈ -6.1%`,
+  - `ΔIsc ≈ -4.6%`,
+  - `ΔRp ≈ +63.4%`,
+  - `Δ(-Z''max) ≈ +62.2%`;
+- sustained preference for the two-relaxation model from the four-cell state onward;
+- closely similar suspected same-substring and cross-substring responses in the targeted boundary test;
+- hotspot-associated spectral differences that are not consistently larger than healthy run-to-run drift.
 
-## Provenance
+## Provenance and curation
 
-Development/debugging versions of scripts are intentionally excluded from the final public-facing repository. The goal is to preserve the shortest reproducible path from retained raw data to the submitted figures and conclusions.
+Development/debugging versions are intentionally excluded from the public-facing MATLAB set where a later retained version supersedes them. See `docs/matlab_curation.md` and `matlab/MANIFEST.md`.
