@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the accompanying final-year project report."
+title: "PV Impedance Condition Monitoring"
+type: software
+authors:
+  - family-names: Langeveldt
+    given-names: Jamie
+repository-code: "https://github.com/Jamielng26/pv-impedance-condition-monitoring"
+url: "https://github.com/Jamielng26/pv-impedance-condition-monitoring"
+abstract: >-
+  Experimental data and MATLAB analysis supporting a final-year project on
+  impedance-based fault classification and condition monitoring of a
+  photovoltaic module under healthy operating variation, partial shading,
+  mismatch and exploratory local heating.
+keywords:
+  - photovoltaic
+  - impedance spectroscopy
+  - frequency response analysis
+  - partial shading
+  - condition monitoring
+  - fault classification
+license: "proprietary"
